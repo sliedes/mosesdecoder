@@ -341,10 +341,12 @@ sub tokenize
             my $pre = $1;
             if (($pre =~ /\./ && $pre =~ /\p{IsAlpha}/) || ($NONBREAKING_PREFIX{$pre} && $NONBREAKING_PREFIX{$pre}==1) || ($i<scalar(@words)-1 && ($words[$i+1] =~ /^[\p{IsLower}]/)))
             {
+                $word = $pre." .";
                 #no change
-			}
+	    }
             elsif (($NONBREAKING_PREFIX{$pre} && $NONBREAKING_PREFIX{$pre}==2) && ($i<scalar(@words)-1 && ($words[$i+1] =~ /^[0-9]+/)))
             {
+                $word = $pre." .";
                 #no change
             }
             else
